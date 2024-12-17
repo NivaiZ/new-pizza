@@ -6,6 +6,10 @@ export async function GET() {
 	return NextResponse.json(users)
 }
 
-export async function POST() {
-	
+export async function POST(req: NextRequest) {
+	const data = await req.json()
+	const users = await prisma.user.create({
+		data
+	})
+	return NextResponse.json(users)
 }
